@@ -2,6 +2,8 @@
 
 You can copy browser's URL and title with various formats like markdown, anchor tag and your own.
 
+![screenshot](https://github.com/fallroot/copy-url-for-alfred/raw/master/misc/screenshot.png)
+
 ## Installation
 
 [Powerpack](https://www.alfredapp.com/powerpack/) is required.
