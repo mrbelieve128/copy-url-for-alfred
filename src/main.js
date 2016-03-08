@@ -132,11 +132,18 @@ class App {
 
     get data() {
         var processes = Application('System Events').processes;
+        var frontmost = processes.whose({frontmost: {'=': true}}).name().toString();
 
-        if (processes.byName('Google Chrome').exists()) {
+        if (frontmost === 'Google Chrome') {
             return new Chrome().currentTabInfo;
-        } else if (processes.byName('Safari').exists()) {
+        } else if (frontmost === 'Safari') {
             return new Safari().currentTabInfo;
+        } else {
+            if (processes.byName('Google Chrome').exists()) {
+                return new Chrome().currentTabInfo;
+            } else if (processes.byName('Safari').exists()) {
+                return new Safari().currentTabInfo;
+            }
         }
     }
 
