@@ -79,6 +79,13 @@ class Safari extends Browser {
     }
 }
 
+class SafariPreview extends Browser {
+    constructor() {
+        super('com.apple.SafariTechnologyPreview');
+        this.key.title = 'name';
+    }
+}
+
 class Alfred {
     static get dataPath() {
         return $.getenv('alfred_workflow_data');
@@ -138,11 +145,15 @@ class App {
             return new Chrome().currentTabInfo;
         } else if (frontmost === 'Safari') {
             return new Safari().currentTabInfo;
+        } else if (frontmost === 'Safari Technology Preview') {
+            return new SafariPreview().currentTabInfo;
         } else {
             if (processes.byName('Google Chrome').exists()) {
                 return new Chrome().currentTabInfo;
             } else if (processes.byName('Safari').exists()) {
                 return new Safari().currentTabInfo;
+            } else if (processes.byName('Safari Technology Preview').exists()) {
+                return new SafariPreview().currentTabInfo;
             }
         }
     }
