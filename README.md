@@ -20,6 +20,35 @@ You can change everything at Alfred Preferences > Workflows menu.
 1. Open `~/Library/Application Support/Alfred 2/Workflow Data/com.fallroot.copyurl/config.json` file.
 2. Edit contents with valid [JSON](http://www.json.org/) format.
 
+#### config.json format
+
+`config.json` file should be array of object is consist of `format` and `type` fields.
+`format` field should be string of combination `${url}`, `${title}` or JavaScript function string like below.
+
+```
+[
+    {
+        "format": "${url}",
+        "title": "URL"
+    },
+    {
+        "format": "${title}",
+        "title": "Title"
+    },
+    {
+        "format": "<a href=\"${url}\">${title}</a>",
+        "title": "Anchor"
+    },
+    {
+        "format": "[${title}](${url})",
+        "title": "Markdown"
+    },
+    {
+        "format": "function({title,url}){return title.toUpperString() + '\\n' + url}",
+        "title": "Custom"
+    }
+]
+```
 ## License
 
 [MIT](https://github.com/fallroot/copy-url-for-alfred/blob/master/LICENSE)

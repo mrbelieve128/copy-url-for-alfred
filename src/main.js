@@ -71,8 +71,12 @@ class Alfred {
         const items = templates.map(template => {
             let text = template.format;
 
-            while (match = regExp.exec(text)) {
-                text = text.replace(match[0], data[match[1]]);
+            if (text.match(/^function/)) {
+                text = eval(`(${text})`)(data);
+            } else {
+                while (match = regExp.exec(text)) {
+                    text = text.replace(match[0], data[match[1]]);
+                }
             }
 
             return {
