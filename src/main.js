@@ -2,33 +2,6 @@ ObjC.import('stdlib');
 
 const NIL = $();
 
-class Util {
-    static get currentPath() {
-        var currApp = Application.currentApplication();
-        currApp.includeStandardAdditions = true;
-
-        var path = $.NSString.alloc.initWithUTF8String(currApp.pathTo());
-
-        return path.stringByDeletingLastPathComponent.js;
-    }
-
-    static escapeXML(text) {
-        return text.replace(/&/g, '&amp;')
-                   .replace(/'/g, '&apos;')
-                   .replace(/</g, '&lt;')
-                   .replace(/>/g, '&gt;')
-                   .replace(/"/g, '&quot;');
-    }
-
-    static unescapeXML(text) {
-        return text.replace(/&amp;/g, '&')
-                   .replace(/&apos;/g, '\'')
-                   .replace(/&lt;/g, '<')
-                   .replace(/&gt;/g, '>')
-                   .replace(/&quot;/g, '"');
-    }
-}
-
 class Browser {
     constructor(bundleId) {
         this.app = Application(bundleId);
@@ -92,25 +65,27 @@ class Alfred {
     }
 
     static generateOutput(data, templates) {
-        var header = '<?xml version="1.0"?><items>';
-        var footer = '</items>';
-        var regExp = /\$\{([^}]+)\}/;
-        var match;
+        const regExp = /\$\{([^}]+)\}/;
+        let match;
 
-        var body = templates.map(function(template) {
-            var title = Util.escapeXML(template.title);
-            var text = template.format;
+        const items = templates.map(template => {
+            let text = template.format;
 
             while (match = regExp.exec(text)) {
                 text = text.replace(match[0], data[match[1]]);
             }
 
-            text = Util.escapeXML(text);
+            return {
+                arg: text,
+                subtitle: text,
+                text,
+                title: template.title
+            }
+        });
 
-            return `<item arg="${text}"><title>${title}</title><subtitle>${text}</subtitle><text type="copy">${text}</text></item>`
-        }).join('');
-
-        return header + body + footer;
+        return JSON.stringify({
+            items
+        });
     }
 }
 
