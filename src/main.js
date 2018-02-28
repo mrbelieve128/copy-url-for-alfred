@@ -29,6 +29,7 @@ class Browser {
 
     if (tab) {
       return {
+        selection: this.selection || '',
         title: tab[this.key.title](),
         url: tab[this.key.url]()
       }
@@ -42,6 +43,13 @@ class Chrome extends Browser {
   constructor () {
     super('com.google.Chrome')
     this.key.currentTab = 'activeTab'
+  }
+
+  get selection () {
+    this.app.includeStandardAdditions = true
+    this.app.windows.at(0).activeTab().copySelection()
+    delay(0.1)
+    return this.app.theClipboard()
   }
 }
 
