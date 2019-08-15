@@ -126,7 +126,7 @@ class App {
 
   get data () {
     var processes = Application('System Events').processes
-    var frontmost = processes.whose({frontmost: {'=': true}}).name().toString()
+    var frontmost = processes.whose({ frontmost: true }).name().toString()
 
     if (frontmost === 'Google Chrome') {
       return new Chrome().currentTabInfo
