@@ -3,7 +3,8 @@
   "version": "0.0.5",
   "description": "You can copy browser's URL and title with various formats like markdown, anchor tag and your own.",
   "devDependencies": {
-    "standard": "^11.0.0"
+    "babel-eslint": "^10.0.2",
+    "standard": "^11.0.1"
   },
   "standard": {
     "globals": [
@@ -11,6 +12,7 @@
       "Application",
       "ObjC",
       "delay"
-    ]
+    ],
+    "parser": "babel-eslint"
   }
 }
