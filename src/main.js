@@ -39,7 +39,7 @@ class Browser {
   }
 }
 
-class Chrome extends Browser {
+class GoogleChrome extends Browser {
   constructor () {
     super('com.google.Chrome')
     this.key.currentTab = 'activeTab'
@@ -60,7 +60,7 @@ class Safari extends Browser {
   }
 }
 
-class SafariPreview extends Browser {
+class SafariTechnologyPreview extends Browser {
   constructor () {
     super('com.apple.SafariTechnologyPreview')
     this.key.title = 'name'
@@ -101,6 +101,17 @@ class Alfred {
   }
 }
 
+const names = [
+  'Google Chrome',
+  'Safari',
+  'Safari Technology Preview'
+]
+
+const classes = {
+  GoogleChrome,
+  Safari
+}
+
 class App {
   constructor () {
     this.dataPath = Alfred.dataPath
@@ -128,19 +139,13 @@ class App {
     var processes = Application('System Events').processes
     var frontmost = processes.whose({ frontmost: true }).name().toString()
 
-    if (frontmost === 'Google Chrome') {
-      return new Chrome().currentTabInfo
-    } else if (frontmost === 'Safari') {
-      return new Safari().currentTabInfo
-    } else if (frontmost === 'Safari Technology Preview') {
-      return new SafariPreview().currentTabInfo
+    if (names.includes(frontmost)) {
+      return new classes[frontmost.replace(/\s+/, '')]().currentTabInfo
     } else {
-      if (processes.byName('Google Chrome').exists()) {
-        return new Chrome().currentTabInfo
-      } else if (processes.byName('Safari').exists()) {
-        return new Safari().currentTabInfo
-      } else if (processes.byName('Safari Technology Preview').exists()) {
-        return new SafariPreview().currentTabInfo
+      const browser = names.find(browser => processes.byName(browser).exists())
+
+      if (browser) {
+        return new classes[browser.replace(/\s+/, '')]().currentTabInfo
       }
     }
   }
