@@ -1,15 +1,19 @@
 ObjC.import('stdlib')
 
 const NIL = $()
+const browsers = [
+  'Google Chrome',
+  'Safari'
+]
 
 class Browser {
-  constructor (bundleId) {
-    this.app = Application(bundleId)
-    this.key = {
-      currentTab: 'currentTab',
+  constructor (name, key = {}) {
+    this.app = Application(name)
+    this.name = name
+    this.key = Object.assign({
       title: 'title',
       url: 'url'
-    }
+    }, key)
   }
 
   hasWindow () {
@@ -39,10 +43,11 @@ class Browser {
   }
 }
 
-class GoogleChrome extends Browser {
-  constructor () {
-    super('com.google.Chrome')
-    this.key.currentTab = 'activeTab'
+class Chromium extends Browser {
+  constructor (name) {
+    super(name, {
+      currentTab: 'activeTab'
+    })
   }
 
   get selection () {
@@ -53,17 +58,22 @@ class GoogleChrome extends Browser {
   }
 }
 
-class Safari extends Browser {
-  constructor () {
-    super('com.apple.Safari')
-    this.key.title = 'name'
+class WebKit extends Browser {
+  constructor (name) {
+    super(name, {
+      currentTab: 'currentTab',
+      title: 'name'
+    })
   }
 }
 
-class SafariTechnologyPreview extends Browser {
-  constructor () {
-    super('com.apple.SafariTechnologyPreview')
-    this.key.title = 'name'
+function getInstance (name) {
+  if (name.match(/^brave|google chrome|microsoft edge|opera|vivaldi/i)) {
+    return new Chromium(name)
+  } else if (name.match(/^safari/i)) {
+    return new WebKit(name)
+  } else {
+    return {}
   }
 }
 
@@ -101,17 +111,6 @@ class Alfred {
   }
 }
 
-const names = [
-  'Google Chrome',
-  'Safari',
-  'Safari Technology Preview'
-]
-
-const classes = {
-  GoogleChrome,
-  Safari
-}
-
 class App {
   constructor () {
     this.dataPath = Alfred.dataPath
@@ -139,13 +138,13 @@ class App {
     var processes = Application('System Events').processes
     var frontmost = processes.whose({ frontmost: true }).name().toString()
 
-    if (names.includes(frontmost)) {
-      return new classes[frontmost.replace(/\s+/, '')]().currentTabInfo
+    if (browsers.includes(frontmost)) {
+      return getInstance(frontmost).currentTabInfo
     } else {
-      const browser = names.find(browser => processes.byName(browser).exists())
+      const browser = browsers.find(browser => processes.byName(browser).exists())
 
       if (browser) {
-        return new classes[browser.replace(/\s+/, '')]().currentTabInfo
+        return getInstance(browser).currentTabInfo
       }
     }
   }
