@@ -23,13 +23,11 @@ class Browser {
   get currentTab () {
     if (this.hasWindow()) {
       return this.app.windows.at(0)[this.key.currentTab]()
-    } else {
-
     }
   }
 
   get currentTabInfo () {
-    var tab = this.currentTab
+    const tab = this.currentTab
 
     if (tab) {
       return {
@@ -126,17 +124,17 @@ class App {
   }
 
   initConfig () {
-    var fileManager = $.NSFileManager.defaultManager
-    var config = JSON.stringify([{'format': '${url}', 'title': 'URL'}, {'format': '${title}', 'title': 'Title'}, {'format': '<a href="${url}">${title}</a>', 'title': 'Anchor'}, {'format': '[${title}](${url})', 'title': 'Markdown'}])
-    var error = $()
+    const fileManager = $.NSFileManager.defaultManager
+    const config = JSON.stringify([{'format': '${url}', 'title': 'URL'}, {'format': '${title}', 'title': 'Title'}, {'format': '<a href="${url}">${title}</a>', 'title': 'Anchor'}, {'format': '[${title}](${url})', 'title': 'Markdown'}])
+    let error = $()
 
     fileManager.createDirectoryAtPathWithIntermediateDirectoriesAttributesError(this.dataPath, true, NIL, error)
     fileManager.createFileAtPathContentsAttributes(this.configPath, config, NIL)
   }
 
   get data () {
-    var processes = Application('System Events').processes
-    var frontmost = processes.whose({ frontmost: true }).name().toString()
+    const processes = Application('System Events').processes
+    const frontmost = processes.whose({ frontmost: true }).name().toString()
 
     if (browsers.includes(frontmost)) {
       return getInstance(frontmost).currentTabInfo
@@ -154,8 +152,8 @@ class App {
   }
 
   run () {
-    var data = this.data
-    var templates = this.templates
+    const data = this.data
+    const templates = this.templates
 
     if (!data || !templates) {
       return
