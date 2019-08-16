@@ -25,7 +25,7 @@ You can change everything at Alfred Preferences > Workflows menu.
 `config.json` file should be array of object is consist of `format` and `type` fields.
 `format` field should be string of combination `${url}`, `${title}` or JavaScript function string like below.
 
-```
+```json
 [
     {
         "format": "${url}",
@@ -49,6 +49,15 @@ You can change everything at Alfred Preferences > Workflows menu.
     }
 ]
 ```
+
+### Add your favorite browsers
+
+This workflow works with Google Chrome, Safari. If you want to add other browser, follow the steps below.
+
+* Open Alfred Preferences and choose Workflows > Copy URL
+* Select first script filter object
+* Edit `browsers` array with *exact* browser name in order
+
 ## License
 
 [MIT](https://github.com/fallroot/copy-url-for-alfred/blob/master/LICENSE)
