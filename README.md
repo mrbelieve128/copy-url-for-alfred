@@ -50,13 +50,20 @@ You can change everything at Alfred Preferences > Workflows menu.
 ]
 ```
 
-### Add your favorite browsers
+## Supported Browsers
 
-This workflow works with Google Chrome, Safari. If you want to add other browser, follow the steps below.
+⚠️ This workflow was made by using OSA(Open Scripting Architecture). You can't use this workflow in browsers which does not support OSA like [Firefox](https://www.mozilla.org/firefox/).
 
-* Open Alfred Preferences and choose Workflows > Copy URL
-* Select first script filter object
-* Edit `browsers` array with *exact* browser name in order
+### Chromium
+
+* [Brave](https://brave.com/)
+* [Google Chrome](https://www.google.com/chrome/)
+* [Microsoft Edge](https://www.microsoftedgeinsider.com/)
+* [Vivaldi](https://vivaldi.com/)
+
+### WebKit
+
+* [Safari](https://www.apple.com/safari/)
 
 ## License
 

@@ -1,6 +1,6 @@
 {
   "name": "copy-url-for-alfred",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "You can copy browser's URL and title with various formats like markdown, anchor tag and your own.",
   "devDependencies": {
     "babel-eslint": "^10.0.2",
