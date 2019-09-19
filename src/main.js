@@ -1,19 +1,34 @@
+ObjC.import('CoreGraphics')
 ObjC.import('stdlib')
 
 const NIL = $()
-const browsers = [
-  'Google Chrome',
-  'Safari'
-]
 
 class Browser {
   constructor (name, key = {}) {
     this.app = Application(name)
-    this.name = name
     this.key = Object.assign({
       title: 'title',
       url: 'url'
     }, key)
+  }
+
+  static isChromium (name) {
+    return name.match(/^(?:Brave|Google Chrome|Microsoft Edge|Opera|Vivaldi)\b/)
+  }
+
+  static isWebKit (name) {
+    return name.match(/^(?:Safari)\b/)
+  }
+
+  static getInstanceWithNames (names) {
+    for (const name of names) {
+      if (this.isChromium(name)) {
+        return new Chromium(name)
+      } else if (this.isWebKit(name)) {
+        return new WebKit(name)
+      }
+    }
+    return {}
   }
 
   hasWindow () {
@@ -35,8 +50,6 @@ class Browser {
         title: tab[this.key.title](),
         url: tab[this.key.url]()
       }
-    } else {
-      return {}
     }
   }
 }
@@ -62,16 +75,6 @@ class WebKit extends Browser {
       currentTab: 'currentTab',
       title: 'name'
     })
-  }
-}
-
-function getInstance (name) {
-  if (name.match(/^brave|google chrome|microsoft edge|opera|vivaldi/i)) {
-    return new Chromium(name)
-  } else if (name.match(/^safari/i)) {
-    return new WebKit(name)
-  } else {
-    return {}
   }
 }
 
@@ -133,18 +136,11 @@ class App {
   }
 
   get data () {
-    const processes = Application('System Events').processes
-    const frontmost = processes.whose({ frontmost: true }).name().toString()
+    const options = $.kCGWindowListOptionOnScreenOnly | $.kCGWindowListExcludeDesktopElements
+    const windows = ObjC.deepUnwrap($.CGWindowListCopyWindowInfo(options, $.kCGNullWindowID))
+    const names = Array.from(new Set(windows.map(window => window.kCGWindowOwnerName)))
 
-    if (browsers.includes(frontmost)) {
-      return getInstance(frontmost).currentTabInfo
-    } else {
-      const browser = browsers.find(browser => processes.byName(browser).exists())
-
-      if (browser) {
-        return getInstance(browser).currentTabInfo
-      }
-    }
+    return Browser.getInstanceWithNames(names).currentTabInfo
   }
 
   get templates () {
