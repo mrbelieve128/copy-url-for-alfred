@@ -61,3 +61,7 @@ This workflow works with Google Chrome, Safari. If you want to add other browser
 ## License
 
 [MIT](https://github.com/fallroot/copy-url-for-alfred/blob/master/LICENSE)
+
+## Icon
+
+Icons made by [DinosoftLabs](https://www.flaticon.com/authors/dinosoftlabs) from [www.flaticon.com](https://www.flaticon.com/)
