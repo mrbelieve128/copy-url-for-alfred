@@ -8,12 +8,20 @@ You can copy browser's URL and title with various formats like markdown, anchor 
 
 [Powerpack](https://www.alfredapp.com/powerpack/) is required.
 
-1. Download [copyurl.alfredworkflow](https://github.com/fallroot/copy-url-for-alfred/raw/master/build/copyurl.alfredworkflow).
+1. Download [copyurl-catalina.alfredworkflow](https://github.com/fallroot/copy-url-for-alfred/raw/master/build/copyurl-catalina.alfredworkflow) on macOS Catalina. Download [copyurl.alfredworkflow](https://github.com/fallroot/copy-url-for-alfred/raw/master/build/copyurl.alfredworkflow) for others.
 2. Open file by double-clicking or dragging into Alfred.
 3. Open Alfred and type `url`.
 4. Select URL format.
 
 You can change everything at Alfred Preferences > Workflows menu.
+
+### For macOS Catalina(10.15.x) Users
+
+Some codes does not work in macOS Catalina. So you should write your favorite browser manually.
+
+* Open Alfred Preferences and choose Workflows > Copy URL
+* Select first script filter object
+* Edit `myBrowsers` array with *exact* browser name in order
 
 ### Add your own template
 
