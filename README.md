@@ -4,6 +4,23 @@ You can copy safari's URL and title with various formats like markdown, anchor t
 
 ![screenshot](https://github.com/mrbelieve128/copy-url-for-alfred/raw/master/misc/screenshot.png)
 
+My setting as follow:
+```json
+[{
+        "format": "${url}",
+        "title": "URL"
+    },
+    {
+        "format": "${title}\n${url}",
+        "title": "Expand"
+    },
+    {
+        "format": "[${title}](${url})",
+        "title": "Markdown"
+    }
+]
+```
+
 ## Installation
 
 [Powerpack](https://www.alfredapp.com/powerpack/) is required.
