@@ -1,31 +1,25 @@
-# Copy URL for Alfred
+# Copy Safari URL for Alfred
 
-You can copy browser's URL and title with various formats like markdown, anchor tag and your own.
+You can copy safari's URL and title with various formats like markdown, anchor tag and your own.
 
-![screenshot](https://github.com/fallroot/copy-url-for-alfred/raw/master/misc/screenshot.png)
+![screenshot](https://github.com/mrbelieve128/copy-/mrbelieve128/url-for-alfred/raw/master/misc/screenshot.png)
 
 ## Installation
 
 [Powerpack](https://www.alfredapp.com/powerpack/) is required.
 
-1. Download [copyurl-catalina.alfredworkflow](https://github.com/fallroot/copy-url-for-alfred/raw/master/build/copyurl-catalina.alfredworkflow) on macOS Catalina. Download [copyurl.alfredworkflow](https://github.com/fallroot/copy-url-for-alfred/raw/master/build/copyurl.alfredworkflow) for others.
+1. Download [copyurl-catalina.alfredworkflow](https://github.com/mrbelieve128/copy-url-for-alfred/raw/master/build/copy-/mrbelieve128/url.alfredworkflow) on macOS Catalina or Big Sur. 
 2. Open file by double-clicking or dragging into Alfred.
-3. Open Alfred and type `url`.
-4. Select URL format.
+3. Go to Alfred Setting -> Features -> Default Results -> Fallbacks -> "Setup fallback result" and remove all the fallback.
+4. Open Alfred and type `url`, if not appear, go back to Step 3 to check the fallback setting.
+5. Select URL format.
 
 You can change everything at Alfred Preferences > Workflows menu.
 
-### For macOS Catalina(10.15.x) Users
-
-Some codes does not work in macOS Catalina. So you should write your favorite browser manually.
-
-* Open Alfred Preferences and choose Workflows > Copy URL
-* Select first script filter object
-* Edit `myBrowsers` array with *exact* browser name in order
 
 ### Add your own template
 
-1. Open `~/Library/Application Support/Alfred 2/Workflow Data/com.fallroot.copyurl/config.json` file.
+1. Open `~/Library/Application Support/Alfred/Workflow Data/com.fallroot.copyurl/config.json` file.
 2. Edit contents with valid [JSON](http://www.json.org/) format.
 
 #### config.json format
@@ -60,22 +54,15 @@ Some codes does not work in macOS Catalina. So you should write your favorite br
 
 ## Supported Browsers
 
-⚠️ This workflow was made by using OSA(Open Scripting Architecture). You can't use this workflow in browsers which does not support OSA like [Firefox](https://www.mozilla.org/firefox/).
+2021/7/24: 
+- Chrome 92.0.4515.107
+- Safari
 
-### Chromium
-
-* [Brave](https://brave.com/)
-* [Google Chrome](https://www.google.com/chrome/)
-* [Microsoft Edge](https://www.microsoftedgeinsider.com/)
-* [Vivaldi](https://vivaldi.com/)
-
-### WebKit
-
-* [Safari](https://www.apple.com/safari/)
+The Edge 92.0.902.55 and Firefox 90.0.1 didn't work
 
 ## License
 
-[MIT](https://github.com/fallroot/copy-url-for-alfred/blob/master/LICENSE)
+[MIT](https://github.com/mrbelieve128/copy-url-for-alfred/blob/master/LICENSE)
 
 ## Icon
 
