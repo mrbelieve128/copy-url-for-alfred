@@ -2,13 +2,13 @@
 
 You can copy safari's URL and title with various formats like markdown, anchor tag and your own.
 
-![screenshot](https://github.com/mrbelieve128/copy-/mrbelieve128/url-for-alfred/raw/master/misc/screenshot.png)
+![screenshot](https://github.com/mrbelieve128/copy-url-for-alfred/raw/master/misc/screenshot.png)
 
 ## Installation
 
 [Powerpack](https://www.alfredapp.com/powerpack/) is required.
 
-1. Download [copyurl-catalina.alfredworkflow](https://github.com/mrbelieve128/copy-url-for-alfred/raw/master/build/copy-/mrbelieve128/url.alfredworkflow) on macOS Catalina or Big Sur. 
+1. Download [copyurl-catalina.alfredworkflow](https://github.com/mrbelieve128/copy-url-for-alfred/raw/master/build/copy-url.alfredworkflow) on macOS Catalina or Big Sur. 
 2. Open file by double-clicking or dragging into Alfred.
 3. Go to Alfred Setting -> Features -> Default Results -> Fallbacks -> "Setup fallback result" and remove all the fallback.
 4. Open Alfred and type `url`, if not appear, go back to Step 3 to check the fallback setting.
